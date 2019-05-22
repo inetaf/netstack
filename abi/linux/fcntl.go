@@ -17,7 +17,6 @@ package linux
 // Comands from linux/fcntl.h.
 const (
 	F_DUPFD         = 0
-	F_DUPFD_CLOEXEC = 1030
 	F_GETFD         = 1
 	F_GETFL         = 3
 	F_GETOWN        = 9
@@ -26,6 +25,9 @@ const (
 	F_SETLK         = 6
 	F_SETLKW        = 7
 	F_SETOWN        = 8
+	F_DUPFD_CLOEXEC = 1024 + 6
+	F_SETPIPE_SZ    = 1024 + 7
+	F_GETPIPE_SZ    = 1024 + 8
 )
 
 // Flags for fcntl.
