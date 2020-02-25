@@ -1,4 +1,4 @@
-// Copyright 2019 The gVisor Authors.
+// Copyright 2020 The gVisor Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,14 +14,16 @@
 
 package linux
 
-// EpollEvent is equivalent to struct epoll_event from epoll(2).
-//
-// +marshal
-type EpollEvent struct {
-	Events uint32
-	// Linux makes struct epoll_event::data a __u64. We represent it as
-	// [2]int32 because, on amd64, Linux also makes struct epoll_event
-	// __attribute__((packed)), such that there is no padding between Events
-	// and Data.
-	Data [2]int32
-}
+// ioctl(2) request numbers from linux/if_tun.h
+var (
+	TUNSETIFF = IOC(_IOC_WRITE, 'T', 202, 4)
+	TUNGETIFF = IOC(_IOC_READ, 'T', 210, 4)
+)
+
+// Flags from net/if_tun.h
+const (
+	IFF_TUN      = 0x0001
+	IFF_TAP      = 0x0002
+	IFF_NO_PI    = 0x1000
+	IFF_NOFILTER = 0x1000
+)
