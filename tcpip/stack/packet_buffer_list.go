@@ -1,4 +1,4 @@
-package raw
+package stack
 
 // ElementMapper provides an identity mapping by default.
 //
@@ -6,14 +6,14 @@ package raw
 // objects, if they are not the same. An ElementMapper is not typically
 // required if: Linker is left as is, Element is left as is, or Linker and
 // Element are the same type.
-type rawPacketElementMapper struct{}
+type PacketBufferElementMapper struct{}
 
 // linkerFor maps an Element to a Linker.
 //
 // This default implementation should be inlined.
 //
 //go:nosplit
-func (rawPacketElementMapper) linkerFor(elem *rawPacket) *rawPacket { return elem }
+func (PacketBufferElementMapper) linkerFor(elem *PacketBuffer) *PacketBuffer { return elem }
 
 // List is an intrusive list. Entries can be added to or removed from the list
 // in O(1) time and with no additional memory allocations.
@@ -26,36 +26,36 @@ func (rawPacketElementMapper) linkerFor(elem *rawPacket) *rawPacket { return ele
 //      }
 //
 // +stateify savable
-type rawPacketList struct {
-	head *rawPacket
-	tail *rawPacket
+type PacketBufferList struct {
+	head *PacketBuffer
+	tail *PacketBuffer
 }
 
 // Reset resets list l to the empty state.
-func (l *rawPacketList) Reset() {
+func (l *PacketBufferList) Reset() {
 	l.head = nil
 	l.tail = nil
 }
 
 // Empty returns true iff the list is empty.
-func (l *rawPacketList) Empty() bool {
+func (l *PacketBufferList) Empty() bool {
 	return l.head == nil
 }
 
 // Front returns the first element of list l or nil.
-func (l *rawPacketList) Front() *rawPacket {
+func (l *PacketBufferList) Front() *PacketBuffer {
 	return l.head
 }
 
 // Back returns the last element of list l or nil.
-func (l *rawPacketList) Back() *rawPacket {
+func (l *PacketBufferList) Back() *PacketBuffer {
 	return l.tail
 }
 
 // Len returns the number of elements in the list.
 //
 // NOTE: This is an O(n) operation.
-func (l *rawPacketList) Len() (count int) {
+func (l *PacketBufferList) Len() (count int) {
 	for e := l.Front(); e != nil; e = e.Next() {
 		count++
 	}
@@ -63,12 +63,12 @@ func (l *rawPacketList) Len() (count int) {
 }
 
 // PushFront inserts the element e at the front of list l.
-func (l *rawPacketList) PushFront(e *rawPacket) {
-	linker := rawPacketElementMapper{}.linkerFor(e)
+func (l *PacketBufferList) PushFront(e *PacketBuffer) {
+	linker := PacketBufferElementMapper{}.linkerFor(e)
 	linker.SetNext(l.head)
 	linker.SetPrev(nil)
 	if l.head != nil {
-		rawPacketElementMapper{}.linkerFor(l.head).SetPrev(e)
+		PacketBufferElementMapper{}.linkerFor(l.head).SetPrev(e)
 	} else {
 		l.tail = e
 	}
@@ -77,12 +77,12 @@ func (l *rawPacketList) PushFront(e *rawPacket) {
 }
 
 // PushBack inserts the element e at the back of list l.
-func (l *rawPacketList) PushBack(e *rawPacket) {
-	linker := rawPacketElementMapper{}.linkerFor(e)
+func (l *PacketBufferList) PushBack(e *PacketBuffer) {
+	linker := PacketBufferElementMapper{}.linkerFor(e)
 	linker.SetNext(nil)
 	linker.SetPrev(l.tail)
 	if l.tail != nil {
-		rawPacketElementMapper{}.linkerFor(l.tail).SetNext(e)
+		PacketBufferElementMapper{}.linkerFor(l.tail).SetNext(e)
 	} else {
 		l.head = e
 	}
@@ -91,13 +91,13 @@ func (l *rawPacketList) PushBack(e *rawPacket) {
 }
 
 // PushBackList inserts list m at the end of list l, emptying m.
-func (l *rawPacketList) PushBackList(m *rawPacketList) {
+func (l *PacketBufferList) PushBackList(m *PacketBufferList) {
 	if l.head == nil {
 		l.head = m.head
 		l.tail = m.tail
 	} else if m.head != nil {
-		rawPacketElementMapper{}.linkerFor(l.tail).SetNext(m.head)
-		rawPacketElementMapper{}.linkerFor(m.head).SetPrev(l.tail)
+		PacketBufferElementMapper{}.linkerFor(l.tail).SetNext(m.head)
+		PacketBufferElementMapper{}.linkerFor(m.head).SetPrev(l.tail)
 
 		l.tail = m.tail
 	}
@@ -106,9 +106,9 @@ func (l *rawPacketList) PushBackList(m *rawPacketList) {
 }
 
 // InsertAfter inserts e after b.
-func (l *rawPacketList) InsertAfter(b, e *rawPacket) {
-	bLinker := rawPacketElementMapper{}.linkerFor(b)
-	eLinker := rawPacketElementMapper{}.linkerFor(e)
+func (l *PacketBufferList) InsertAfter(b, e *PacketBuffer) {
+	bLinker := PacketBufferElementMapper{}.linkerFor(b)
+	eLinker := PacketBufferElementMapper{}.linkerFor(e)
 
 	a := bLinker.Next()
 
@@ -117,16 +117,16 @@ func (l *rawPacketList) InsertAfter(b, e *rawPacket) {
 	bLinker.SetNext(e)
 
 	if a != nil {
-		rawPacketElementMapper{}.linkerFor(a).SetPrev(e)
+		PacketBufferElementMapper{}.linkerFor(a).SetPrev(e)
 	} else {
 		l.tail = e
 	}
 }
 
 // InsertBefore inserts e before a.
-func (l *rawPacketList) InsertBefore(a, e *rawPacket) {
-	aLinker := rawPacketElementMapper{}.linkerFor(a)
-	eLinker := rawPacketElementMapper{}.linkerFor(e)
+func (l *PacketBufferList) InsertBefore(a, e *PacketBuffer) {
+	aLinker := PacketBufferElementMapper{}.linkerFor(a)
+	eLinker := PacketBufferElementMapper{}.linkerFor(e)
 
 	b := aLinker.Prev()
 	eLinker.SetNext(a)
@@ -134,26 +134,26 @@ func (l *rawPacketList) InsertBefore(a, e *rawPacket) {
 	aLinker.SetPrev(e)
 
 	if b != nil {
-		rawPacketElementMapper{}.linkerFor(b).SetNext(e)
+		PacketBufferElementMapper{}.linkerFor(b).SetNext(e)
 	} else {
 		l.head = e
 	}
 }
 
 // Remove removes e from l.
-func (l *rawPacketList) Remove(e *rawPacket) {
-	linker := rawPacketElementMapper{}.linkerFor(e)
+func (l *PacketBufferList) Remove(e *PacketBuffer) {
+	linker := PacketBufferElementMapper{}.linkerFor(e)
 	prev := linker.Prev()
 	next := linker.Next()
 
 	if prev != nil {
-		rawPacketElementMapper{}.linkerFor(prev).SetNext(next)
+		PacketBufferElementMapper{}.linkerFor(prev).SetNext(next)
 	} else {
 		l.head = next
 	}
 
 	if next != nil {
-		rawPacketElementMapper{}.linkerFor(next).SetPrev(prev)
+		PacketBufferElementMapper{}.linkerFor(next).SetPrev(prev)
 	} else {
 		l.tail = prev
 	}
@@ -167,27 +167,27 @@ func (l *rawPacketList) Remove(e *rawPacket) {
 // methods needed by List.
 //
 // +stateify savable
-type rawPacketEntry struct {
-	next *rawPacket
-	prev *rawPacket
+type PacketBufferEntry struct {
+	next *PacketBuffer
+	prev *PacketBuffer
 }
 
 // Next returns the entry that follows e in the list.
-func (e *rawPacketEntry) Next() *rawPacket {
+func (e *PacketBufferEntry) Next() *PacketBuffer {
 	return e.next
 }
 
 // Prev returns the entry that precedes e in the list.
-func (e *rawPacketEntry) Prev() *rawPacket {
+func (e *PacketBufferEntry) Prev() *PacketBuffer {
 	return e.prev
 }
 
 // SetNext assigns 'entry' as the entry that follows e in the list.
-func (e *rawPacketEntry) SetNext(elem *rawPacket) {
+func (e *PacketBufferEntry) SetNext(elem *PacketBuffer) {
 	e.next = elem
 }
 
 // SetPrev assigns 'entry' as the entry that precedes e in the list.
-func (e *rawPacketEntry) SetPrev(elem *rawPacket) {
+func (e *PacketBufferEntry) SetPrev(elem *PacketBuffer) {
 	e.prev = elem
 }
