@@ -12,24 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// This file contains various Targets.
+package tcp
 
-package iptables
+import (
+	"time"
+)
 
-import "gvisor.dev/gvisor/pkg/tcpip/buffer"
-
-// UnconditionalAcceptTarget accepts all packets.
-type UnconditionalAcceptTarget struct{}
-
-// Action implements Target.Action.
-func (UnconditionalAcceptTarget) Action(packet buffer.VectorisedView) (Verdict, string) {
-	return Accept, ""
+// saveLastRcvdAckTime is invoked by stateify.
+func (r *receiver) saveLastRcvdAckTime() unixTime {
+	return unixTime{r.lastRcvdAckTime.Unix(), r.lastRcvdAckTime.UnixNano()}
 }
 
-// UnconditionalDropTarget denies all packets.
-type UnconditionalDropTarget struct{}
-
-// Action implements Target.Action.
-func (UnconditionalDropTarget) Action(packet buffer.VectorisedView) (Verdict, string) {
-	return Drop, ""
+// loadLastRcvdAckTime is invoked by stateify.
+func (r *receiver) loadLastRcvdAckTime(unix unixTime) {
+	r.lastRcvdAckTime = time.Unix(unix.second, unix.nano)
 }

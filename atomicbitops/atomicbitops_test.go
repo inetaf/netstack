@@ -16,8 +16,9 @@ package atomicbitops
 
 import (
 	"runtime"
-	"sync"
 	"testing"
+
+	"gvisor.dev/gvisor/pkg/sync"
 )
 
 const iterations = 100
@@ -192,70 +193,6 @@ func TestCompareAndSwapUint64(t *testing.T) {
 		}
 		if got, want := val, test.next; got != want {
 			t.Errorf("%s: incorrect value stored in val: got %d, expected %d", test.name, got, want)
-		}
-	}
-}
-
-func TestIncUnlessZeroInt32(t *testing.T) {
-	for _, test := range []struct {
-		initial int32
-		final   int32
-		ret     bool
-	}{
-		{
-			initial: 0,
-			final:   0,
-			ret:     false,
-		},
-		{
-			initial: 1,
-			final:   2,
-			ret:     true,
-		},
-		{
-			initial: 2,
-			final:   3,
-			ret:     true,
-		},
-	} {
-		val := test.initial
-		if got, want := IncUnlessZeroInt32(&val), test.ret; got != want {
-			t.Errorf("For initial value of %d: incorrect return value: got %v, wanted %v", test.initial, got, want)
-		}
-		if got, want := val, test.final; got != want {
-			t.Errorf("For initial value of %d: incorrect final value: got %d, wanted %d", test.initial, got, want)
-		}
-	}
-}
-
-func TestDecUnlessOneInt32(t *testing.T) {
-	for _, test := range []struct {
-		initial int32
-		final   int32
-		ret     bool
-	}{
-		{
-			initial: 0,
-			final:   -1,
-			ret:     true,
-		},
-		{
-			initial: 1,
-			final:   1,
-			ret:     false,
-		},
-		{
-			initial: 2,
-			final:   1,
-			ret:     true,
-		},
-	} {
-		val := test.initial
-		if got, want := DecUnlessOneInt32(&val), test.ret; got != want {
-			t.Errorf("For initial value of %d: incorrect return value: got %v, wanted %v", test.initial, got, want)
-		}
-		if got, want := val, test.final; got != want {
-			t.Errorf("For initial value of %d: incorrect final value: got %d, wanted %d", test.initial, got, want)
 		}
 	}
 }
