@@ -1,19 +1,4 @@
-package packet
-
-// ElementMapper provides an identity mapping by default.
-//
-// This can be replaced to provide a struct that maps elements to linker
-// objects, if they are not the same. An ElementMapper is not typically
-// required if: Linker is left as is, Element is left as is, or Linker and
-// Element are the same type.
-type packetElementMapper struct{}
-
-// linkerFor maps an Element to a Linker.
-//
-// This default implementation should be inlined.
-//
-//go:nosplit
-func (packetElementMapper) linkerFor(elem *packet) *packet { return elem }
+package state
 
 // List is an intrusive list. Entries can be added to or removed from the list
 // in O(1) time and with no additional memory allocations.
@@ -26,49 +11,49 @@ func (packetElementMapper) linkerFor(elem *packet) *packet { return elem }
 //      }
 //
 // +stateify savable
-type packetList struct {
-	head *packet
-	tail *packet
+type deferredList struct {
+	head *objectEncodeState
+	tail *objectEncodeState
 }
 
 // Reset resets list l to the empty state.
-func (l *packetList) Reset() {
+func (l *deferredList) Reset() {
 	l.head = nil
 	l.tail = nil
 }
 
 // Empty returns true iff the list is empty.
-func (l *packetList) Empty() bool {
+func (l *deferredList) Empty() bool {
 	return l.head == nil
 }
 
 // Front returns the first element of list l or nil.
-func (l *packetList) Front() *packet {
+func (l *deferredList) Front() *objectEncodeState {
 	return l.head
 }
 
 // Back returns the last element of list l or nil.
-func (l *packetList) Back() *packet {
+func (l *deferredList) Back() *objectEncodeState {
 	return l.tail
 }
 
 // Len returns the number of elements in the list.
 //
 // NOTE: This is an O(n) operation.
-func (l *packetList) Len() (count int) {
-	for e := l.Front(); e != nil; e = (packetElementMapper{}.linkerFor(e)).Next() {
+func (l *deferredList) Len() (count int) {
+	for e := l.Front(); e != nil; e = (deferredMapper{}.linkerFor(e)).Next() {
 		count++
 	}
 	return count
 }
 
 // PushFront inserts the element e at the front of list l.
-func (l *packetList) PushFront(e *packet) {
-	linker := packetElementMapper{}.linkerFor(e)
+func (l *deferredList) PushFront(e *objectEncodeState) {
+	linker := deferredMapper{}.linkerFor(e)
 	linker.SetNext(l.head)
 	linker.SetPrev(nil)
 	if l.head != nil {
-		packetElementMapper{}.linkerFor(l.head).SetPrev(e)
+		deferredMapper{}.linkerFor(l.head).SetPrev(e)
 	} else {
 		l.tail = e
 	}
@@ -77,12 +62,12 @@ func (l *packetList) PushFront(e *packet) {
 }
 
 // PushBack inserts the element e at the back of list l.
-func (l *packetList) PushBack(e *packet) {
-	linker := packetElementMapper{}.linkerFor(e)
+func (l *deferredList) PushBack(e *objectEncodeState) {
+	linker := deferredMapper{}.linkerFor(e)
 	linker.SetNext(nil)
 	linker.SetPrev(l.tail)
 	if l.tail != nil {
-		packetElementMapper{}.linkerFor(l.tail).SetNext(e)
+		deferredMapper{}.linkerFor(l.tail).SetNext(e)
 	} else {
 		l.head = e
 	}
@@ -91,13 +76,13 @@ func (l *packetList) PushBack(e *packet) {
 }
 
 // PushBackList inserts list m at the end of list l, emptying m.
-func (l *packetList) PushBackList(m *packetList) {
+func (l *deferredList) PushBackList(m *deferredList) {
 	if l.head == nil {
 		l.head = m.head
 		l.tail = m.tail
 	} else if m.head != nil {
-		packetElementMapper{}.linkerFor(l.tail).SetNext(m.head)
-		packetElementMapper{}.linkerFor(m.head).SetPrev(l.tail)
+		deferredMapper{}.linkerFor(l.tail).SetNext(m.head)
+		deferredMapper{}.linkerFor(m.head).SetPrev(l.tail)
 
 		l.tail = m.tail
 	}
@@ -106,9 +91,9 @@ func (l *packetList) PushBackList(m *packetList) {
 }
 
 // InsertAfter inserts e after b.
-func (l *packetList) InsertAfter(b, e *packet) {
-	bLinker := packetElementMapper{}.linkerFor(b)
-	eLinker := packetElementMapper{}.linkerFor(e)
+func (l *deferredList) InsertAfter(b, e *objectEncodeState) {
+	bLinker := deferredMapper{}.linkerFor(b)
+	eLinker := deferredMapper{}.linkerFor(e)
 
 	a := bLinker.Next()
 
@@ -117,16 +102,16 @@ func (l *packetList) InsertAfter(b, e *packet) {
 	bLinker.SetNext(e)
 
 	if a != nil {
-		packetElementMapper{}.linkerFor(a).SetPrev(e)
+		deferredMapper{}.linkerFor(a).SetPrev(e)
 	} else {
 		l.tail = e
 	}
 }
 
 // InsertBefore inserts e before a.
-func (l *packetList) InsertBefore(a, e *packet) {
-	aLinker := packetElementMapper{}.linkerFor(a)
-	eLinker := packetElementMapper{}.linkerFor(e)
+func (l *deferredList) InsertBefore(a, e *objectEncodeState) {
+	aLinker := deferredMapper{}.linkerFor(a)
+	eLinker := deferredMapper{}.linkerFor(e)
 
 	b := aLinker.Prev()
 	eLinker.SetNext(a)
@@ -134,26 +119,26 @@ func (l *packetList) InsertBefore(a, e *packet) {
 	aLinker.SetPrev(e)
 
 	if b != nil {
-		packetElementMapper{}.linkerFor(b).SetNext(e)
+		deferredMapper{}.linkerFor(b).SetNext(e)
 	} else {
 		l.head = e
 	}
 }
 
 // Remove removes e from l.
-func (l *packetList) Remove(e *packet) {
-	linker := packetElementMapper{}.linkerFor(e)
+func (l *deferredList) Remove(e *objectEncodeState) {
+	linker := deferredMapper{}.linkerFor(e)
 	prev := linker.Prev()
 	next := linker.Next()
 
 	if prev != nil {
-		packetElementMapper{}.linkerFor(prev).SetNext(next)
+		deferredMapper{}.linkerFor(prev).SetNext(next)
 	} else if l.head == e {
 		l.head = next
 	}
 
 	if next != nil {
-		packetElementMapper{}.linkerFor(next).SetPrev(prev)
+		deferredMapper{}.linkerFor(next).SetPrev(prev)
 	} else if l.tail == e {
 		l.tail = prev
 	}
@@ -167,27 +152,27 @@ func (l *packetList) Remove(e *packet) {
 // methods needed by List.
 //
 // +stateify savable
-type packetEntry struct {
-	next *packet
-	prev *packet
+type deferredEntry struct {
+	next *objectEncodeState
+	prev *objectEncodeState
 }
 
 // Next returns the entry that follows e in the list.
-func (e *packetEntry) Next() *packet {
+func (e *deferredEntry) Next() *objectEncodeState {
 	return e.next
 }
 
 // Prev returns the entry that precedes e in the list.
-func (e *packetEntry) Prev() *packet {
+func (e *deferredEntry) Prev() *objectEncodeState {
 	return e.prev
 }
 
 // SetNext assigns 'entry' as the entry that follows e in the list.
-func (e *packetEntry) SetNext(elem *packet) {
+func (e *deferredEntry) SetNext(elem *objectEncodeState) {
 	e.next = elem
 }
 
 // SetPrev assigns 'entry' as the entry that precedes e in the list.
-func (e *packetEntry) SetPrev(elem *packet) {
+func (e *deferredEntry) SetPrev(elem *objectEncodeState) {
 	e.prev = elem
 }

@@ -1,4 +1,4 @@
-package stack
+package state
 
 // ElementMapper provides an identity mapping by default.
 //
@@ -6,14 +6,14 @@ package stack
 // objects, if they are not the same. An ElementMapper is not typically
 // required if: Linker is left as is, Element is left as is, or Linker and
 // Element are the same type.
-type linkAddrEntryElementMapper struct{}
+type completeElementMapper struct{}
 
 // linkerFor maps an Element to a Linker.
 //
 // This default implementation should be inlined.
 //
 //go:nosplit
-func (linkAddrEntryElementMapper) linkerFor(elem *linkAddrEntry) *linkAddrEntry { return elem }
+func (completeElementMapper) linkerFor(elem *objectDecodeState) *objectDecodeState { return elem }
 
 // List is an intrusive list. Entries can be added to or removed from the list
 // in O(1) time and with no additional memory allocations.
@@ -26,49 +26,49 @@ func (linkAddrEntryElementMapper) linkerFor(elem *linkAddrEntry) *linkAddrEntry 
 //      }
 //
 // +stateify savable
-type linkAddrEntryList struct {
-	head *linkAddrEntry
-	tail *linkAddrEntry
+type completeList struct {
+	head *objectDecodeState
+	tail *objectDecodeState
 }
 
 // Reset resets list l to the empty state.
-func (l *linkAddrEntryList) Reset() {
+func (l *completeList) Reset() {
 	l.head = nil
 	l.tail = nil
 }
 
 // Empty returns true iff the list is empty.
-func (l *linkAddrEntryList) Empty() bool {
+func (l *completeList) Empty() bool {
 	return l.head == nil
 }
 
 // Front returns the first element of list l or nil.
-func (l *linkAddrEntryList) Front() *linkAddrEntry {
+func (l *completeList) Front() *objectDecodeState {
 	return l.head
 }
 
 // Back returns the last element of list l or nil.
-func (l *linkAddrEntryList) Back() *linkAddrEntry {
+func (l *completeList) Back() *objectDecodeState {
 	return l.tail
 }
 
 // Len returns the number of elements in the list.
 //
 // NOTE: This is an O(n) operation.
-func (l *linkAddrEntryList) Len() (count int) {
-	for e := l.Front(); e != nil; e = (linkAddrEntryElementMapper{}.linkerFor(e)).Next() {
+func (l *completeList) Len() (count int) {
+	for e := l.Front(); e != nil; e = (completeElementMapper{}.linkerFor(e)).Next() {
 		count++
 	}
 	return count
 }
 
 // PushFront inserts the element e at the front of list l.
-func (l *linkAddrEntryList) PushFront(e *linkAddrEntry) {
-	linker := linkAddrEntryElementMapper{}.linkerFor(e)
+func (l *completeList) PushFront(e *objectDecodeState) {
+	linker := completeElementMapper{}.linkerFor(e)
 	linker.SetNext(l.head)
 	linker.SetPrev(nil)
 	if l.head != nil {
-		linkAddrEntryElementMapper{}.linkerFor(l.head).SetPrev(e)
+		completeElementMapper{}.linkerFor(l.head).SetPrev(e)
 	} else {
 		l.tail = e
 	}
@@ -77,12 +77,12 @@ func (l *linkAddrEntryList) PushFront(e *linkAddrEntry) {
 }
 
 // PushBack inserts the element e at the back of list l.
-func (l *linkAddrEntryList) PushBack(e *linkAddrEntry) {
-	linker := linkAddrEntryElementMapper{}.linkerFor(e)
+func (l *completeList) PushBack(e *objectDecodeState) {
+	linker := completeElementMapper{}.linkerFor(e)
 	linker.SetNext(nil)
 	linker.SetPrev(l.tail)
 	if l.tail != nil {
-		linkAddrEntryElementMapper{}.linkerFor(l.tail).SetNext(e)
+		completeElementMapper{}.linkerFor(l.tail).SetNext(e)
 	} else {
 		l.head = e
 	}
@@ -91,13 +91,13 @@ func (l *linkAddrEntryList) PushBack(e *linkAddrEntry) {
 }
 
 // PushBackList inserts list m at the end of list l, emptying m.
-func (l *linkAddrEntryList) PushBackList(m *linkAddrEntryList) {
+func (l *completeList) PushBackList(m *completeList) {
 	if l.head == nil {
 		l.head = m.head
 		l.tail = m.tail
 	} else if m.head != nil {
-		linkAddrEntryElementMapper{}.linkerFor(l.tail).SetNext(m.head)
-		linkAddrEntryElementMapper{}.linkerFor(m.head).SetPrev(l.tail)
+		completeElementMapper{}.linkerFor(l.tail).SetNext(m.head)
+		completeElementMapper{}.linkerFor(m.head).SetPrev(l.tail)
 
 		l.tail = m.tail
 	}
@@ -106,9 +106,9 @@ func (l *linkAddrEntryList) PushBackList(m *linkAddrEntryList) {
 }
 
 // InsertAfter inserts e after b.
-func (l *linkAddrEntryList) InsertAfter(b, e *linkAddrEntry) {
-	bLinker := linkAddrEntryElementMapper{}.linkerFor(b)
-	eLinker := linkAddrEntryElementMapper{}.linkerFor(e)
+func (l *completeList) InsertAfter(b, e *objectDecodeState) {
+	bLinker := completeElementMapper{}.linkerFor(b)
+	eLinker := completeElementMapper{}.linkerFor(e)
 
 	a := bLinker.Next()
 
@@ -117,16 +117,16 @@ func (l *linkAddrEntryList) InsertAfter(b, e *linkAddrEntry) {
 	bLinker.SetNext(e)
 
 	if a != nil {
-		linkAddrEntryElementMapper{}.linkerFor(a).SetPrev(e)
+		completeElementMapper{}.linkerFor(a).SetPrev(e)
 	} else {
 		l.tail = e
 	}
 }
 
 // InsertBefore inserts e before a.
-func (l *linkAddrEntryList) InsertBefore(a, e *linkAddrEntry) {
-	aLinker := linkAddrEntryElementMapper{}.linkerFor(a)
-	eLinker := linkAddrEntryElementMapper{}.linkerFor(e)
+func (l *completeList) InsertBefore(a, e *objectDecodeState) {
+	aLinker := completeElementMapper{}.linkerFor(a)
+	eLinker := completeElementMapper{}.linkerFor(e)
 
 	b := aLinker.Prev()
 	eLinker.SetNext(a)
@@ -134,26 +134,26 @@ func (l *linkAddrEntryList) InsertBefore(a, e *linkAddrEntry) {
 	aLinker.SetPrev(e)
 
 	if b != nil {
-		linkAddrEntryElementMapper{}.linkerFor(b).SetNext(e)
+		completeElementMapper{}.linkerFor(b).SetNext(e)
 	} else {
 		l.head = e
 	}
 }
 
 // Remove removes e from l.
-func (l *linkAddrEntryList) Remove(e *linkAddrEntry) {
-	linker := linkAddrEntryElementMapper{}.linkerFor(e)
+func (l *completeList) Remove(e *objectDecodeState) {
+	linker := completeElementMapper{}.linkerFor(e)
 	prev := linker.Prev()
 	next := linker.Next()
 
 	if prev != nil {
-		linkAddrEntryElementMapper{}.linkerFor(prev).SetNext(next)
+		completeElementMapper{}.linkerFor(prev).SetNext(next)
 	} else if l.head == e {
 		l.head = next
 	}
 
 	if next != nil {
-		linkAddrEntryElementMapper{}.linkerFor(next).SetPrev(prev)
+		completeElementMapper{}.linkerFor(next).SetPrev(prev)
 	} else if l.tail == e {
 		l.tail = prev
 	}
@@ -167,27 +167,27 @@ func (l *linkAddrEntryList) Remove(e *linkAddrEntry) {
 // methods needed by List.
 //
 // +stateify savable
-type linkAddrEntryEntry struct {
-	next *linkAddrEntry
-	prev *linkAddrEntry
+type completeEntry struct {
+	next *objectDecodeState
+	prev *objectDecodeState
 }
 
 // Next returns the entry that follows e in the list.
-func (e *linkAddrEntryEntry) Next() *linkAddrEntry {
+func (e *completeEntry) Next() *objectDecodeState {
 	return e.next
 }
 
 // Prev returns the entry that precedes e in the list.
-func (e *linkAddrEntryEntry) Prev() *linkAddrEntry {
+func (e *completeEntry) Prev() *objectDecodeState {
 	return e.prev
 }
 
 // SetNext assigns 'entry' as the entry that follows e in the list.
-func (e *linkAddrEntryEntry) SetNext(elem *linkAddrEntry) {
+func (e *completeEntry) SetNext(elem *objectDecodeState) {
 	e.next = elem
 }
 
 // SetPrev assigns 'entry' as the entry that precedes e in the list.
-func (e *linkAddrEntryEntry) SetPrev(elem *linkAddrEntry) {
+func (e *completeEntry) SetPrev(elem *objectDecodeState) {
 	e.prev = elem
 }
