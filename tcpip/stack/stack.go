@@ -29,14 +29,14 @@ import (
 	"time"
 
 	"golang.org/x/time/rate"
-	"gvisor.dev/gvisor/pkg/rand"
-	"gvisor.dev/gvisor/pkg/sync"
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/buffer"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
-	"gvisor.dev/gvisor/pkg/tcpip/ports"
-	"gvisor.dev/gvisor/pkg/tcpip/seqnum"
-	"gvisor.dev/gvisor/pkg/waiter"
+	"inet.af/netstack/rand"
+	"inet.af/netstack/sync"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/buffer"
+	"inet.af/netstack/tcpip/header"
+	"inet.af/netstack/tcpip/ports"
+	"inet.af/netstack/tcpip/seqnum"
+	"inet.af/netstack/waiter"
 )
 
 const (

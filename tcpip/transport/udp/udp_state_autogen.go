@@ -3,8 +3,8 @@
 package udp
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
-	"gvisor.dev/gvisor/pkg/tcpip/buffer"
+	"inet.af/netstack/state"
+	"inet.af/netstack/tcpip/buffer"
 )
 
 func (u *udpPacket) StateTypeName() string {

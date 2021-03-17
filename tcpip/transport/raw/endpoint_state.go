@@ -15,9 +15,9 @@
 package raw
 
 import (
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/buffer"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/buffer"
+	"inet.af/netstack/tcpip/stack"
 )
 
 // saveData saves rawPacket.data field.

@@ -17,8 +17,8 @@ package tcp
 import (
 	"time"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/seqnum"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/seqnum"
 )
 
 const (

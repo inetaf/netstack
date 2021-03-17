@@ -18,8 +18,8 @@ import (
 	"math"
 
 	"golang.org/x/sys/unix"
-	"gvisor.dev/gvisor/pkg/tcpip/buffer"
-	"gvisor.dev/gvisor/pkg/tcpip/link/sharedmem/queue"
+	"inet.af/netstack/tcpip/buffer"
+	"inet.af/netstack/tcpip/link/sharedmem/queue"
 )
 
 const (

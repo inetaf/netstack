@@ -20,8 +20,8 @@ import (
 	"math/rand"
 	"sync/atomic"
 
-	"gvisor.dev/gvisor/pkg/sync"
-	"gvisor.dev/gvisor/pkg/tcpip"
+	"inet.af/netstack/sync"
+	"inet.af/netstack/tcpip"
 )
 
 const anyIPAddress tcpip.Address = ""

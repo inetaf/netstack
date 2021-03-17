@@ -18,7 +18,7 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
+	"inet.af/netstack/tcpip"
 )
 
 // RFC 971 defines the fields of the IPv4 header on page 11 using the following

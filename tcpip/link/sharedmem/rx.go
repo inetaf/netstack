@@ -20,8 +20,8 @@ import (
 	"sync/atomic"
 
 	"golang.org/x/sys/unix"
-	"gvisor.dev/gvisor/pkg/tcpip/link/rawfile"
-	"gvisor.dev/gvisor/pkg/tcpip/link/sharedmem/queue"
+	"inet.af/netstack/tcpip/link/rawfile"
+	"inet.af/netstack/tcpip/link/sharedmem/queue"
 )
 
 // rx holds all state associated with an rx queue.

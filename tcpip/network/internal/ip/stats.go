@@ -14,7 +14,7 @@
 
 package ip
 
-import "gvisor.dev/gvisor/pkg/tcpip"
+import "inet.af/netstack/tcpip"
 
 // LINT.IfChange(MultiCounterIPStats)
 

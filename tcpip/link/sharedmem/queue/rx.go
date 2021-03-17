@@ -20,8 +20,8 @@ import (
 	"encoding/binary"
 	"sync/atomic"
 
-	"gvisor.dev/gvisor/pkg/log"
-	"gvisor.dev/gvisor/pkg/tcpip/link/sharedmem/pipe"
+	"inet.af/netstack/log"
+	"inet.af/netstack/tcpip/link/sharedmem/pipe"
 )
 
 const (

@@ -18,7 +18,7 @@ import (
 	"math"
 	"sync/atomic"
 
-	"gvisor.dev/gvisor/pkg/sync"
+	"inet.af/netstack/sync"
 )
 
 // PacketOverheadFactor is used to multiply the value provided by the user on a

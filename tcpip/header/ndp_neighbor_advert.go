@@ -14,7 +14,7 @@
 
 package header
 
-import "gvisor.dev/gvisor/pkg/tcpip"
+import "inet.af/netstack/tcpip"
 
 // NDPNeighborAdvert is an NDP Neighbor Advertisement message. It will
 // only contain the body of an ICMPv6 packet.

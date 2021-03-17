@@ -17,12 +17,12 @@ package tcp
 import (
 	"encoding/binary"
 
-	"gvisor.dev/gvisor/pkg/rand"
-	"gvisor.dev/gvisor/pkg/sleep"
-	"gvisor.dev/gvisor/pkg/sync"
-	"gvisor.dev/gvisor/pkg/tcpip/hash/jenkins"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
+	"inet.af/netstack/rand"
+	"inet.af/netstack/sleep"
+	"inet.af/netstack/sync"
+	"inet.af/netstack/tcpip/hash/jenkins"
+	"inet.af/netstack/tcpip/header"
+	"inet.af/netstack/tcpip/stack"
 )
 
 // epQueue is a queue of endpoints.

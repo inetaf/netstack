@@ -6,7 +6,7 @@
 package tcpip
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (s *StdClock) StateTypeName() string {
