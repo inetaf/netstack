@@ -23,8 +23,8 @@ import (
 	"io"
 	"math"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/buffer"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/buffer"
 )
 
 // IPv6ExtensionHeaderIdentifier is an IPv6 extension header identifier.

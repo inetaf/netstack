@@ -3,7 +3,7 @@
 package ipv6
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (i *icmpv6DestinationUnreachableSockError) StateTypeName() string {

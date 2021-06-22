@@ -17,9 +17,9 @@ package stack
 import (
 	"time"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
-	"gvisor.dev/gvisor/pkg/tcpip/seqnum"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/header"
+	"inet.af/netstack/tcpip/seqnum"
 )
 
 // TCPProbeFunc is the expected function type for a TCP probe function to be

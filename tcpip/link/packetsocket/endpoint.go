@@ -18,9 +18,9 @@
 package packetsocket
 
 import (
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/link/nested"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/link/nested"
+	"inet.af/netstack/tcpip/stack"
 )
 
 type endpoint struct {

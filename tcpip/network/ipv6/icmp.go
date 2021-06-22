@@ -17,9 +17,9 @@ package ipv6
 import (
 	"fmt"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/header"
+	"inet.af/netstack/tcpip/stack"
 )
 
 // icmpv6DestinationUnreachableSockError is a general ICMPv6 Destination

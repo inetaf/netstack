@@ -15,10 +15,10 @@
 package raw
 
 import (
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
-	"gvisor.dev/gvisor/pkg/tcpip/transport/packet"
-	"gvisor.dev/gvisor/pkg/waiter"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/stack"
+	"inet.af/netstack/tcpip/transport/packet"
+	"inet.af/netstack/waiter"
 )
 
 // EndpointFactory implements stack.RawFactory.

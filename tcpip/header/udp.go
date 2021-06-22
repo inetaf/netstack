@@ -18,7 +18,7 @@ import (
 	"encoding/binary"
 	"math"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
+	"inet.af/netstack/tcpip"
 )
 
 const (

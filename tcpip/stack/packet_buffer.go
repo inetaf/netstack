@@ -16,11 +16,11 @@ package stack
 import (
 	"fmt"
 
-	"gvisor.dev/gvisor/pkg/buffer"
-	"gvisor.dev/gvisor/pkg/sync"
-	"gvisor.dev/gvisor/pkg/tcpip"
-	tcpipbuffer "gvisor.dev/gvisor/pkg/tcpip/buffer"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
+	"inet.af/netstack/buffer"
+	"inet.af/netstack/sync"
+	"inet.af/netstack/tcpip"
+	tcpipbuffer "inet.af/netstack/tcpip/buffer"
+	"inet.af/netstack/tcpip/header"
 )
 
 type headerType int

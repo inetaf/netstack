@@ -18,8 +18,8 @@
 package tcpconntrack
 
 import (
-	"gvisor.dev/gvisor/pkg/tcpip/header"
-	"gvisor.dev/gvisor/pkg/tcpip/seqnum"
+	"inet.af/netstack/tcpip/header"
+	"inet.af/netstack/tcpip/seqnum"
 )
 
 // Result is returned when the state of a TCB is updated in response to an

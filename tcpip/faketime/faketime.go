@@ -21,7 +21,7 @@ import (
 	"sync"
 	"time"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
+	"inet.af/netstack/tcpip"
 )
 
 // NullClock implements a clock that never advances.
