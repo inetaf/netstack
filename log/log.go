@@ -40,8 +40,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"gvisor.dev/gvisor/pkg/linewriter"
-	"gvisor.dev/gvisor/pkg/sync"
+	"inet.af/netstack/linewriter"
+	"inet.af/netstack/sync"
 )
 
 // Level is the log level.

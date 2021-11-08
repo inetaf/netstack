@@ -17,7 +17,7 @@ package header
 import (
 	"encoding/binary"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
+	"inet.af/netstack/tcpip"
 )
 
 const (

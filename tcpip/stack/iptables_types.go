@@ -19,8 +19,8 @@ import (
 	"strings"
 	"sync"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/header"
 )
 
 // A Hook specifies one of the hooks built into the network stack.

@@ -22,7 +22,7 @@ import (
 	"io"
 
 	"golang.org/x/sys/unix"
-	"gvisor.dev/gvisor/pkg/sync"
+	"inet.af/netstack/sync"
 )
 
 // reader implements an io.Reader that returns pseudorandom bytes.

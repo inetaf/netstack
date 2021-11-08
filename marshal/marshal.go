@@ -23,7 +23,7 @@ package marshal
 import (
 	"io"
 
-	"gvisor.dev/gvisor/pkg/hostarch"
+	"inet.af/netstack/hostarch"
 )
 
 // CopyContext defines the memory operations required to marshal to and from

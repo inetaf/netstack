@@ -17,8 +17,8 @@ package tcpip
 import (
 	"sync/atomic"
 
-	"gvisor.dev/gvisor/pkg/atomicbitops"
-	"gvisor.dev/gvisor/pkg/sync"
+	"inet.af/netstack/atomicbitops"
+	"inet.af/netstack/sync"
 )
 
 // SocketOptionsHandler holds methods that help define endpoint specific

@@ -3,7 +3,7 @@
 package tcp
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (offset *TSOffset) StateTypeName() string {

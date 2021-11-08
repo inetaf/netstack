@@ -3,7 +3,7 @@
 package network
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (e *Endpoint) StateTypeName() string {

@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"strings"
 
-	"gvisor.dev/gvisor/pkg/abi"
+	"inet.af/netstack/abi"
 )
 
 // Constants for open(2).

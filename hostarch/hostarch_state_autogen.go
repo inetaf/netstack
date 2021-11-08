@@ -3,7 +3,7 @@
 package hostarch
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (a *AccessType) StateTypeName() string {

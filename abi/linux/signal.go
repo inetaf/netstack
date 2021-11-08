@@ -15,8 +15,8 @@
 package linux
 
 import (
-	"gvisor.dev/gvisor/pkg/bits"
-	"gvisor.dev/gvisor/pkg/hostarch"
+	"inet.af/netstack/bits"
+	"inet.af/netstack/hostarch"
 )
 
 const (

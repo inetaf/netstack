@@ -19,9 +19,9 @@ import (
 	"reflect"
 	"sync/atomic"
 
-	"gvisor.dev/gvisor/pkg/sync"
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
+	"inet.af/netstack/sync"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/header"
 )
 
 type linkResolver struct {

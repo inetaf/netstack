@@ -23,9 +23,9 @@ import (
 	"runtime"
 	"sync/atomic"
 
-	"gvisor.dev/gvisor/pkg/context"
-	"gvisor.dev/gvisor/pkg/log"
-	"gvisor.dev/gvisor/pkg/sync"
+	"inet.af/netstack/context"
+	"inet.af/netstack/log"
+	"inet.af/netstack/sync"
 )
 
 // RefCounter is the interface to be implemented by objects that are reference

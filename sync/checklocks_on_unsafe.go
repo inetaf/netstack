@@ -14,7 +14,7 @@ import (
 	"sync"
 	"unsafe"
 
-	"gvisor.dev/gvisor/pkg/goid"
+	"inet.af/netstack/goid"
 )
 
 // gLocks contains metadata about the locks held by a goroutine.

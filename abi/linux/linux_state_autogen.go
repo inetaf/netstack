@@ -3,7 +3,7 @@
 package linux
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (i *IOEvent) StateTypeName() string {

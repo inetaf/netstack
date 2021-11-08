@@ -18,10 +18,10 @@ import (
 	"fmt"
 	"time"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/buffer"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
-	"gvisor.dev/gvisor/pkg/tcpip/transport"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/buffer"
+	"inet.af/netstack/tcpip/stack"
+	"inet.af/netstack/tcpip/transport"
 )
 
 // saveReceivedAt is invoked by stateify.

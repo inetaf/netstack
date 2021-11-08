@@ -17,9 +17,9 @@ package refsvfs2
 import (
 	"fmt"
 
-	"gvisor.dev/gvisor/pkg/log"
-	refs_vfs1 "gvisor.dev/gvisor/pkg/refs"
-	"gvisor.dev/gvisor/pkg/sync"
+	"inet.af/netstack/log"
+	refs_vfs1 "inet.af/netstack/refs"
+	"inet.af/netstack/sync"
 )
 
 var (

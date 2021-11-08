@@ -3,7 +3,7 @@
 package ports
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (f *Flags) StateTypeName() string {

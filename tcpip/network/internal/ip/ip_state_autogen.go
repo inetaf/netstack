@@ -3,7 +3,7 @@
 package ip
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (e *ErrMessageTooLong) StateTypeName() string {

@@ -19,7 +19,7 @@ import (
 	"unsafe"
 
 	"golang.org/x/sys/unix"
-	"gvisor.dev/gvisor/pkg/abi/linux"
+	"inet.af/netstack/abi/linux"
 )
 
 // IgnoreChildStop sets the SA_NOCLDSTOP flag, causing child processes to not

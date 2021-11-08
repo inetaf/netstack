@@ -17,11 +17,11 @@ package stack
 import (
 	"fmt"
 
-	"gvisor.dev/gvisor/pkg/sync"
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/hash/jenkins"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
-	"gvisor.dev/gvisor/pkg/tcpip/ports"
+	"inet.af/netstack/sync"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/hash/jenkins"
+	"inet.af/netstack/tcpip/header"
+	"inet.af/netstack/tcpip/ports"
 )
 
 type protocolIDs struct {

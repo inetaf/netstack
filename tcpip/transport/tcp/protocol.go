@@ -20,17 +20,17 @@ import (
 	"strings"
 	"time"
 
-	"gvisor.dev/gvisor/pkg/sync"
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/buffer"
-	"gvisor.dev/gvisor/pkg/tcpip/hash/jenkins"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
-	"gvisor.dev/gvisor/pkg/tcpip/header/parse"
-	"gvisor.dev/gvisor/pkg/tcpip/internal/tcp"
-	"gvisor.dev/gvisor/pkg/tcpip/seqnum"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
-	"gvisor.dev/gvisor/pkg/tcpip/transport/raw"
-	"gvisor.dev/gvisor/pkg/waiter"
+	"inet.af/netstack/sync"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/buffer"
+	"inet.af/netstack/tcpip/hash/jenkins"
+	"inet.af/netstack/tcpip/header"
+	"inet.af/netstack/tcpip/header/parse"
+	"inet.af/netstack/tcpip/internal/tcp"
+	"inet.af/netstack/tcpip/seqnum"
+	"inet.af/netstack/tcpip/stack"
+	"inet.af/netstack/tcpip/transport/raw"
+	"inet.af/netstack/waiter"
 )
 
 const (

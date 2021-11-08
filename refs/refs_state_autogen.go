@@ -3,7 +3,7 @@
 package refs
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (w *WeakRef) StateTypeName() string {

@@ -15,9 +15,9 @@
 package udp
 
 import (
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
-	"gvisor.dev/gvisor/pkg/waiter"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/stack"
+	"inet.af/netstack/waiter"
 )
 
 // Forwarder is a session request forwarder, which allows clients to decide

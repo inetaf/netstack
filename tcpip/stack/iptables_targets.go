@@ -17,9 +17,9 @@ package stack
 import (
 	"fmt"
 
-	"gvisor.dev/gvisor/pkg/log"
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
+	"inet.af/netstack/log"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/header"
 )
 
 // AcceptTarget accepts packets.

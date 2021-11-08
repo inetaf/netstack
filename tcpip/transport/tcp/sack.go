@@ -15,8 +15,8 @@
 package tcp
 
 import (
-	"gvisor.dev/gvisor/pkg/tcpip/header"
-	"gvisor.dev/gvisor/pkg/tcpip/seqnum"
+	"inet.af/netstack/tcpip/header"
+	"inet.af/netstack/tcpip/seqnum"
 )
 
 const (

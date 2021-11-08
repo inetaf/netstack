@@ -17,7 +17,7 @@ package transport
 import (
 	"fmt"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
+	"inet.af/netstack/tcpip"
 )
 
 // DatagramEndpointState is the state of a datagram-based endpoint.

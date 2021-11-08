@@ -39,9 +39,9 @@ import (
 	"strings"
 	"time"
 
-	"gvisor.dev/gvisor/pkg/atomicbitops"
-	"gvisor.dev/gvisor/pkg/sync"
-	"gvisor.dev/gvisor/pkg/waiter"
+	"inet.af/netstack/atomicbitops"
+	"inet.af/netstack/sync"
+	"inet.af/netstack/waiter"
 )
 
 // Using header.IPv4AddressSize would cause an import cycle.

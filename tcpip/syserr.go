@@ -17,8 +17,8 @@ package tcpip
 import (
 	"fmt"
 
-	"gvisor.dev/gvisor/pkg/abi/linux/errno"
-	"gvisor.dev/gvisor/pkg/syserr"
+	"inet.af/netstack/abi/linux/errno"
+	"inet.af/netstack/syserr"
 )
 
 // LINT.IfChange

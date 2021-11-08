@@ -17,7 +17,7 @@ package marshal
 import (
 	"io"
 
-	"gvisor.dev/gvisor/pkg/hostarch"
+	"inet.af/netstack/hostarch"
 )
 
 // StubMarshallable implements the Marshallable interface.
