@@ -16,7 +16,7 @@
 package errors
 
 import (
-	"gvisor.dev/gvisor/pkg/abi/linux/errno"
+	"inet.af/netstack/abi/linux/errno"
 )
 
 // Error represents a syscall errno with a descriptive message.

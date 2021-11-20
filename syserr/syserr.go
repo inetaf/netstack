@@ -21,10 +21,10 @@ import (
 	"fmt"
 
 	"golang.org/x/sys/unix"
-	"gvisor.dev/gvisor/pkg/abi/linux/errno"
-	"gvisor.dev/gvisor/pkg/errors"
-	"gvisor.dev/gvisor/pkg/errors/linuxerr"
-	"gvisor.dev/gvisor/pkg/safecopy"
+	"inet.af/netstack/abi/linux/errno"
+	"inet.af/netstack/errors"
+	"inet.af/netstack/errors/linuxerr"
+	"inet.af/netstack/safecopy"
 )
 
 // Error represents an internal error.

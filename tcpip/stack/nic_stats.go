@@ -15,7 +15,7 @@
 package stack
 
 import (
-	"gvisor.dev/gvisor/pkg/tcpip"
+	"inet.af/netstack/tcpip"
 )
 
 type sharedStats struct {

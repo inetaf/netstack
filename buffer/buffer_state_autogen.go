@@ -3,7 +3,7 @@
 package buffer
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (b *buffer) StateTypeName() string {

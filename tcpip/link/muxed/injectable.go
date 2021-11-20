@@ -16,9 +16,9 @@
 package muxed
 
 import (
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/header"
+	"inet.af/netstack/tcpip/stack"
 )
 
 // InjectableEndpoint is an injectable multi endpoint. The endpoint has

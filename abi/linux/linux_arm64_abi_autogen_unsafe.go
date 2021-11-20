@@ -12,9 +12,9 @@
 package linux
 
 import (
-    "gvisor.dev/gvisor/pkg/gohacks"
-    "gvisor.dev/gvisor/pkg/hostarch"
-    "gvisor.dev/gvisor/pkg/marshal"
+    "inet.af/netstack/gohacks"
+    "inet.af/netstack/hostarch"
+    "inet.af/netstack/marshal"
     "io"
     "reflect"
     "runtime"

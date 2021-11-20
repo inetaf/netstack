@@ -26,7 +26,7 @@ import (
 	"context"
 	"time"
 
-	"gvisor.dev/gvisor/pkg/log"
+	"inet.af/netstack/log"
 )
 
 // A Context represents a thread of execution (hereafter "goroutine" to reflect

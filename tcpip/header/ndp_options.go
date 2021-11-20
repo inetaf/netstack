@@ -23,7 +23,7 @@ import (
 	"math"
 	"time"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
+	"inet.af/netstack/tcpip"
 )
 
 // ndpOptionIdentifier is an NDP option type identifier.

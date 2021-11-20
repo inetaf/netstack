@@ -19,8 +19,8 @@ import (
 	"math/rand"
 	"time"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/header"
 )
 
 // TableID identifies a specific table.

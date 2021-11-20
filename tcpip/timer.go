@@ -17,7 +17,7 @@ package tcpip
 import (
 	"time"
 
-	"gvisor.dev/gvisor/pkg/sync"
+	"inet.af/netstack/sync"
 )
 
 // jobInstance is a specific instance of Job.

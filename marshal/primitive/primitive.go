@@ -19,8 +19,8 @@ package primitive
 import (
 	"io"
 
-	"gvisor.dev/gvisor/pkg/hostarch"
-	"gvisor.dev/gvisor/pkg/marshal"
+	"inet.af/netstack/hostarch"
+	"inet.af/netstack/marshal"
 )
 
 // Int8 is a marshal.Marshallable implementation for int8.

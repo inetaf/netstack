@@ -3,7 +3,7 @@
 package noop
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (ep *endpoint) StateTypeName() string {

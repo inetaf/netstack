@@ -3,7 +3,7 @@
 package fragmentation
 
 import (
-	"gvisor.dev/gvisor/pkg/state"
+	"inet.af/netstack/state"
 )
 
 func (l *reassemblerList) StateTypeName() string {

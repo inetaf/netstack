@@ -17,9 +17,9 @@ package stack
 import (
 	"fmt"
 
-	"gvisor.dev/gvisor/pkg/sync"
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
+	"inet.af/netstack/sync"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/header"
 )
 
 // Route represents a route through the networking stack to a given destination.

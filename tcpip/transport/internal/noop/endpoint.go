@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"io"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
-	"gvisor.dev/gvisor/pkg/waiter"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/stack"
+	"inet.af/netstack/waiter"
 )
 
 // endpoint can be created, but all interactions have no effect or

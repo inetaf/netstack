@@ -16,7 +16,7 @@
 package refsvfs2
 
 import (
-	"gvisor.dev/gvisor/pkg/context"
+	"inet.af/netstack/context"
 )
 
 // RefCounter is the interface to be implemented by objects that are reference

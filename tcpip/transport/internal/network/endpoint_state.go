@@ -17,9 +17,9 @@ package network
 import (
 	"fmt"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
-	"gvisor.dev/gvisor/pkg/tcpip/transport"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/stack"
+	"inet.af/netstack/tcpip/transport"
 )
 
 // Resume implements tcpip.ResumableEndpoint.Resume.

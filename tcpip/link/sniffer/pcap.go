@@ -19,8 +19,8 @@ import (
 	"encoding/binary"
 	"time"
 
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/stack"
 )
 
 type pcapHeader struct {

@@ -19,11 +19,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"gvisor.dev/gvisor/pkg/sync"
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
-	"gvisor.dev/gvisor/pkg/tcpip/ports"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
+	"inet.af/netstack/sync"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/header"
+	"inet.af/netstack/tcpip/ports"
+	"inet.af/netstack/tcpip/stack"
 )
 
 // +checklocks:e.mu

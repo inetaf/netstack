@@ -15,8 +15,8 @@
 package linux
 
 import (
-	"gvisor.dev/gvisor/pkg/marshal"
-	"gvisor.dev/gvisor/pkg/marshal/primitive"
+	"inet.af/netstack/marshal"
+	"inet.af/netstack/marshal/primitive"
 )
 
 // This file contains structures required to support netfilter, specifically

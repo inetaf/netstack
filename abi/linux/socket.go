@@ -15,7 +15,7 @@
 package linux
 
 import (
-	"gvisor.dev/gvisor/pkg/marshal"
+	"inet.af/netstack/marshal"
 )
 
 // Address families, from linux/socket.h.

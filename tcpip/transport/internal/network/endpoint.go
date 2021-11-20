@@ -20,11 +20,11 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"gvisor.dev/gvisor/pkg/sync"
-	"gvisor.dev/gvisor/pkg/tcpip"
-	"gvisor.dev/gvisor/pkg/tcpip/header"
-	"gvisor.dev/gvisor/pkg/tcpip/stack"
-	"gvisor.dev/gvisor/pkg/tcpip/transport"
+	"inet.af/netstack/sync"
+	"inet.af/netstack/tcpip"
+	"inet.af/netstack/tcpip/header"
+	"inet.af/netstack/tcpip/stack"
+	"inet.af/netstack/tcpip/transport"
 )
 
 // Endpoint is a datagram-based endpoint. It only supports sending datagrams to

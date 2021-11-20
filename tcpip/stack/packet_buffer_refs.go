@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"gvisor.dev/gvisor/pkg/refsvfs2"
+	"inet.af/netstack/refsvfs2"
 )
 
 // enableLogging indicates whether reference-related events should be logged (with

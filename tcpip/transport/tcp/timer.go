@@ -18,8 +18,8 @@ import (
 	"math"
 	"time"
 
-	"gvisor.dev/gvisor/pkg/sleep"
-	"gvisor.dev/gvisor/pkg/tcpip"
+	"inet.af/netstack/sleep"
+	"inet.af/netstack/tcpip"
 )
 
 type timerState int
