@@ -1,18 +1,25 @@
 # netstack
 
-This is a "fork" of https://github.com/google/gvisor, extracting out
+This was a "fork" of https://github.com/google/gvisor, extracting out
 just the "netstack" networking bits, which previously were
 self-contained at https://github.com/google/netstack.
+
+## UPDATE
+
+This repo is no longer maintained. As of Go 1.17 and its [lazy module
+loading](https://go.dev/ref/mod#lazy-loading) we no longer need it, so we now
+just use upstream gVisor directly.
 
 ## Why?
 
 Because [gVisor's `go.mod` is gigantic](https://github.com/google/gvisor/blob/go/go.mod)
 and causes problems to people trying to use it as a library.
 
-Arguably Go's tooling is also somewhat to blame:
-Go doesn't make it easy (or even possible) to use a subset (a few
-packages) out of a mega module like gVisor without getting impacted
-by otherwise-unrelated requirements of that dependent module.
+Arguably Go's tooling is also somewhat to blame: Go doesn't make it
+easy (or even possible) to use a subset (a few packages) out of a mega
+module like gVisor without getting impacted by otherwise-unrelated
+requirements of that dependent module. (Update: as of Go 1.17, this
+appears to be fixed; see UPDATE above)
 
 Specifically, [Tailscale](https://github.com/tailscale/tailscale)
 wanted to use gVisor's `tcpip` networking packages, which worked fine for a
